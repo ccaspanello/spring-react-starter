@@ -31,7 +31,6 @@ public class BackendMain implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if(roleRepository.count() == 0){
             createUser("user", ERole.ROLE_USER);
-            createUser("mod", ERole.ROLE_MODERATOR);
             createUser("admin", ERole.ROLE_ADMIN);
         }
     }
@@ -41,7 +40,7 @@ public class BackendMain implements CommandLineRunner {
         role.setName(eRole);
         roleRepository.save(role);
 
-        User user = new User(username,username+"demoapp.com", encoder.encode("password") );
+        User user = new User(username,username+"@demoapp.com", encoder.encode("password") );
         user.getRoles().add(role);
         userRepository.save(user);
     }
