@@ -30,7 +30,7 @@ class App extends Component {
         if (user) {
             this.setState({
                 currentUser: AuthService.getCurrentUser(),
-                showAdminBoard: user.roles.includes("ROLE_ADMIN")
+                showAdminBoard: user.roles.includes("ADMIN")
             });
         }
     }

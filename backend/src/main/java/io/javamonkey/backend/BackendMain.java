@@ -1,9 +1,7 @@
 package io.javamonkey.backend;
 
-import io.javamonkey.backend.model.ERole;
 import io.javamonkey.backend.model.Role;
 import io.javamonkey.backend.model.User;
-import io.javamonkey.backend.repository.RoleRepository;
 import io.javamonkey.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,9 +17,6 @@ public class BackendMain implements CommandLineRunner {
     }
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -29,16 +24,13 @@ public class BackendMain implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if(roleRepository.count() == 0){
-            createUser("user", ERole.ROLE_USER);
-            createUser("admin", ERole.ROLE_ADMIN);
+        if(userRepository.count() == 0){
+            createUser("user", Role.USER);
+            createUser("admin", Role.ADMIN);
         }
     }
 
-    private void createUser(String username, ERole eRole){
-        Role role = new Role();
-        role.setName(eRole);
-        roleRepository.save(role);
+    private void createUser(String username, Role role){
 
         User user = new User(username,username+"@demoapp.com", encoder.encode("password") );
         user.getRoles().add(role);

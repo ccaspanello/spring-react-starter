@@ -1,14 +1,12 @@
 package io.javamonkey.backend.controller;
 
 
-import io.javamonkey.backend.model.ERole;
 import io.javamonkey.backend.model.Role;
 import io.javamonkey.backend.model.User;
 import io.javamonkey.backend.payload.request.LoginRequest;
 import io.javamonkey.backend.payload.request.SignupRequest;
 import io.javamonkey.backend.payload.response.JwtResponse;
 import io.javamonkey.backend.payload.response.MessageResponse;
-import io.javamonkey.backend.repository.RoleRepository;
 import io.javamonkey.backend.repository.UserRepository;
 import io.javamonkey.backend.security.jwt.JwtUtils;
 import io.javamonkey.backend.security.services.UserDetailsImpl;
@@ -40,9 +38,6 @@ public class AuthController {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
 
     @Autowired
     PasswordEncoder encoder;
@@ -94,22 +89,15 @@ public class AuthController {
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
+            roles.add(Role.USER);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-
+                        roles.add(Role.ADMIN);
                         break;
                     default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
+                        roles.add(Role.USER);
                 }
             });
         }
