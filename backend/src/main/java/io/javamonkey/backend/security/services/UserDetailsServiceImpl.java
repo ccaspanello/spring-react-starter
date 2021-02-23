@@ -1,6 +1,6 @@
 package io.javamonkey.backend.security.services;
 
-import io.javamonkey.backend.model.User;
+import io.javamonkey.backend.entity.User;
 import io.javamonkey.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

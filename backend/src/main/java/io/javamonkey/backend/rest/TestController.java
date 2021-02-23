@@ -1,4 +1,4 @@
-package io.javamonkey.backend.controller;
+package io.javamonkey.backend.rest;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -1,10 +1,8 @@
-package io.javamonkey.backend.model;
+package io.javamonkey.backend.entity;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -12,11 +10,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@Document(collection = "users")
+@Entity
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @NotBlank
     @Size(max = 20)
@@ -31,6 +30,8 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @ElementCollection
     private Set<Role> roles = new HashSet<>();
 
     public User() {

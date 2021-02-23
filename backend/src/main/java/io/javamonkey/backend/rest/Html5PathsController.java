@@ -1,4 +1,4 @@
-package io.javamonkey.backend.controller;
+package io.javamonkey.backend.rest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

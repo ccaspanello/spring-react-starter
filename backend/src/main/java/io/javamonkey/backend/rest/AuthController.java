@@ -1,8 +1,8 @@
-package io.javamonkey.backend.controller;
+package io.javamonkey.backend.rest;
 
 
-import io.javamonkey.backend.model.Role;
-import io.javamonkey.backend.model.User;
+import io.javamonkey.backend.entity.Role;
+import io.javamonkey.backend.entity.User;
 import io.javamonkey.backend.payload.request.LoginRequest;
 import io.javamonkey.backend.payload.request.SignupRequest;
 import io.javamonkey.backend.payload.response.JwtResponse;

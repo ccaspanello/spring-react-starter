@@ -1,4 +1,4 @@
-package io.javamonkey.backend.model;
+package io.javamonkey.backend.entity;
 
 public enum Role {
     USER,
